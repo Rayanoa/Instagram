@@ -6,7 +6,17 @@
       --card: #ffffff;
       --border: #dbdbdb;
     }
-
+   @media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --card: #1e1e1e;
+    --text: #ffffff;
+    --border: #333;
+     }
+  body { color: var(--text); background: var(--bg); }
+  .card { background: var(--card); border-color: var(--border); }
+  input { background: #2d2d2d; color: white; border-color: #444; }
+     }
     * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
